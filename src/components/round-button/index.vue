@@ -1,5 +1,5 @@
 <template>
-  <a href="javascript:;" class="round-button" :class=" type"></a>
+  <div class="round-button" :class=" type" v-on:click="$emit('on-click-round-button')"></div>
 </template>
 
 <script>

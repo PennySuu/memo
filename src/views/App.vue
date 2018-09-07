@@ -23,6 +23,7 @@ body {
 *:before,
 *:after {
   box-sizing: inherit;
+  color: #323061;
 }
 #app {
   height: 100%;
