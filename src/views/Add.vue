@@ -2,7 +2,7 @@
   <div class="add">
     <div class="add-head">
       <div class="close"></div>
-      <div class="date">January 2017</div>
+      <div class="date">{{month[currentMonth]}} {{currentYear}}</div>
       <div class="switch">
         <div class="item left"></div>
         <div class="item right"></div>
@@ -15,18 +15,35 @@
 </template>
 
 <script>
-import Canlendar from '@/components/calendar'
+import Canlendar from "@/components/calendar";
 export default {
-  name: 'Add',
+  name: "Add",
   data() {
     return {
-      msg: 'Welcome to Your Vue.js App'
-    }
+      currentYear: new Date().getFullYear(),
+      currentMonth: new Date().getMonth(),
+      olympicMonth: [31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31],
+      normalMonth: [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31],
+      month: [
+        "January",
+        "February",
+        "March",
+        "April",
+        "May",
+        "June",
+        "July",
+        "August",
+        "September",
+        "October",
+        "November",
+        "December"
+      ]
+    };
   },
   components: {
     Canlendar
   }
-}
+};
 </script>
 
 <style lang="stylus" scoped>
