@@ -10,6 +10,7 @@ export default {
 }
 </script>
 <style src="@/assets/css/reset" lang="stylus"></style>
+<style src="@/assets/css/font" lang="stylus"></style>
 <style>
 html,
 body {

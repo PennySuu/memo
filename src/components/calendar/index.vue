@@ -4,41 +4,41 @@
         <li v-for="w in week" :key="w">{{w}}</li>
       </ul>
       <ul class="canlendar-body">
-        <li v-for="(d,i) in days" :key="i" @click="onClickDay(d)" :class="{active: currentActiveDate === d.date&&currentMonth===d.month}" >{{d.date}}</li>
+        <li v-for="(d,i) in days" :key="i" @click="onClickDay(d)" :class="{active: currentActiveDate === d.date&&currentMonth===d.month, disable: currentMonth!==d.month}" >{{d.date}}</li>
       </ul>
   </div>
 </template>
 
 <script>
-const olympicMonth = [31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
-const normalMonth = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+const olympicMonth = [31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
+const normalMonth = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
 export default {
-  props: ["type"],
+  props: ['type'],
   data() {
     return {
-      week: ["MON", "TUE", "WED", "THE", "FRI", "SAT", "SUN"],
+      week: ['MON', 'TUE', 'WED', 'THE', 'FRI', 'SAT', 'SUN'],
       days: [],
       currentActiveDate: new Date().getDate(),
       currentYear: new Date().getFullYear(),
       currentMonth: new Date().getMonth()
-    };
+    }
   },
   computed: {
     currentDay: function() {
-      return new Date(this.currentYear, this.currentMonth, 1).getDay();
+      return new Date(this.currentYear, this.currentMonth, 1).getDay()
     },
     month: function() {
       if (
         this.currentYear % 400 === 0 ||
         (this.currentYear % 4 === 0 && this.currentYear % 100 !== 0)
       ) {
-        return olympicMonth;
+        return olympicMonth
       }
-      return normalMonth;
+      return normalMonth
     }
   },
   mounted: function() {
-    const monthDays = this.month[this.currentMonth];
+    const monthDays = this.month[this.currentMonth]
 
     this.days = Array(35)
       .fill(1)
@@ -57,7 +57,7 @@ export default {
               this.currentDay +
               i +
               2
-          };
+          }
         } else if (i - this.currentDay + 2 > monthDays) {
           return {
             year:
@@ -66,22 +66,22 @@ export default {
                 : this.currentYear,
             month: this.currentMonth + 1 > 12 ? 1 : this.currentMonth,
             date: i - monthDays - this.currentDay + 2
-          };
+          }
         } else {
           return {
             year: this.currentYear,
             month: this.currentMonth,
             date: i - this.currentDay + 2
-          };
+          }
         }
-      });
+      })
   },
   methods: {
     onClickDay: function(i) {
-      this.currentActiveDate = i.date;
+      this.currentActiveDate = i.date
     }
   }
-};
+}
 </script>
 
 <style lang="stylus" scoped>
@@ -117,6 +117,10 @@ export default {
         background-color: #35cbe8;
         color: #fff;
         font-weight: 700;
+      }
+
+      &.disable {
+        color: #d4d5dc;
       }
     }
   }

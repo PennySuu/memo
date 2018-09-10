@@ -1,5 +1,5 @@
 <template>
-  <div class="round-button" :class=" type" v-on:click="$emit('on-click-round-button')"></div>
+  <div :class="`round-button icon-${type}`" v-on:click="$emit('on-click-round-button')"></div>
 </template>
 
 <script>
@@ -17,27 +17,13 @@ export default {
   height: 105px;
   border-radius: 50%;
   box-shadow: 0 10px 20px 3px rgba(36, 37, 38, 0.08);
+  z-index: 99;
 
-  &.add, &.ok {
+  &.icon-add, &.icon-check {
     display: flex;
     justify-content: center;
     align-items: center;
-
-    &:before {
-      content: '';
-      display: block;
-      width: 32px;
-      height: 32px;
-      background: url('~@/assets/images/add.png') center / 100% no-repeat;
-    }
-  }
-
-  &.ok {
-    &:before {
-      width: 34px;
-      height: 26px;
-      background: url('~@/assets/images/ok.png') center / 34px 26px no-repeat;
-    }
+    font-size: 50px;
   }
 }
 </style>

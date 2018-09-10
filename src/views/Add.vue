@@ -1,23 +1,27 @@
 <template>
   <div class="add">
     <div class="add-head">
-      <div class="close"></div>
+      <div class="close icon-close"></div>
       <div class="date">{{month[currentMonth]}} {{currentYear}}</div>
       <div class="switch">
-        <div class="item left"></div>
-        <div class="item right"></div>
+        <div class="item icon-left"></div>
+        <div class="item icon-right"></div>
       </div>
     </div>
     <div class="add-body">
       <canlendar/>
+      <event-item v-for="(event,index) in events" :event="event" :key="index" />
     </div>
+    <round-button type="check" />
   </div>
 </template>
 
 <script>
-import Canlendar from "@/components/calendar";
+import Canlendar from '@/components/calendar'
+import RoundButton from '@/components/round-button/'
+import EventItem from '@/components/event-item/'
 export default {
-  name: "Add",
+  name: 'Add',
   data() {
     return {
       currentYear: new Date().getFullYear(),
@@ -25,25 +29,31 @@ export default {
       olympicMonth: [31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31],
       normalMonth: [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31],
       month: [
-        "January",
-        "February",
-        "March",
-        "April",
-        "May",
-        "June",
-        "July",
-        "August",
-        "September",
-        "October",
-        "November",
-        "December"
+        'January',
+        'February',
+        'March',
+        'April',
+        'May',
+        'June',
+        'July',
+        'August',
+        'September',
+        'October',
+        'November',
+        'December'
+      ],
+      events: [
+        { time: '10:30', title: 'Organize a meeting' },
+        { time: '13:30', title: 'Report the results' }
       ]
-    };
+    }
   },
   components: {
-    Canlendar
+    Canlendar,
+    RoundButton,
+    EventItem
   }
-};
+}
 </script>
 
 <style lang="stylus" scoped>
@@ -65,41 +75,23 @@ export default {
       display: flex;
       align-items: center;
       height: 100%;
+      font-size: 40px;
+      width: 100px;
+    }
 
-      &:before {
-        content: '';
-        display: block;
-        width: 22px;
-        height: 22px;
-        background: url('~@/assets/images/close.png') center / 100% no-repeat;
-      }
+    .date {
+      flex: 1;
+      text-align: center;
     }
 
     .switch {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      width: 90px;
+      width: 120px;
 
       .item {
-        &:before {
-          content: '';
-          display: block;
-          width: 15px;
-          height: 26px;
-        }
-      }
-
-      .left {
-        &:before {
-          background: url('~@/assets/images/left.png') center / 100% no-repeat;
-        }
-      }
-
-      .right {
-        &:before {
-          background: url('~@/assets/images/right.png') center / 100% no-repeat;
-        }
+        font-size: 40px;
       }
     }
   }
